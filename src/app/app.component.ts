@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RentCarFrontend';
+  user:string = 'Sema Mercan'; //string yaparak tip güvenliğini sağlarız.
 }
