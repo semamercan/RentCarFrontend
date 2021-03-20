@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 
@@ -13,16 +14,39 @@ export class CarComponent implements OnInit {
   cars:Car[]=[];
   dataLoaded=false;
      
-  constructor(private carService:CarService) { }
+  constructor(private carService:CarService,
+    private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getCars();
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['brandId']) {
+        this.getCarsByColor(params['colorId']);
+      } else if (params['colorId']) {
+        this.getCarsByBrand(params['brandId']);
+      } else {
+        this.getCarDetails(params['carId']);
+      }
+    });
   }
-  
-  getCars(){
-    this.carService.getCars().subscribe((response)=>{
-      this.cars= response.data
-      this.dataLoaded=true; //senkron haline getirmek için kullanıyoruz.
+
+  getCarsByBrand(brandId: number) {
+    this.carService.getCarsByBrand(brandId).subscribe((response) => {
+      this.cars = response.data;
+      this.dataLoaded=true;
+    });
+  }
+
+  getCarsByColor(colorId: number) {
+    this.carService.getCarsByColor(colorId).subscribe((response) => {
+      this.cars = response.data;
+      this.dataLoaded=true;
+    });
+  }
+
+  getCarDetails(carId: number) {
+    this.carService.getCarsDetails(carId).subscribe((response) => {
+      this.cars = response.data;
+      this.dataLoaded=true;
     });
   }
 }

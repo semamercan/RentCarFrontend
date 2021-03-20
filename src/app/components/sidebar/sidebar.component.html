@@ -1,0 +1,10 @@
+<div class="list-group border-primary mb-3">
+  <li [class]="getAllSidebarClass()" routerLink="/"> Menü </li>
+  <li
+    (click)="setCurrentSidebar(sidebar)"
+    *ngFor="let sidebar of sidebars"
+    [class]="getCurrentSidebar(sidebar)"
+    routerLink="/{{ sidebar.toLowerCase()}}">
+    {{ sidebar }}
+  </li>
+</div>

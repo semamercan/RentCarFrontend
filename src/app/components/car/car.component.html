@@ -5,22 +5,22 @@
 <table *ngIf="dataLoaded==true" class="table-dark">
     <thead>
         <tr >
-            <th>Id</th>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model Yılı</th>
-            <th>Günlük Fiyatı</th>
-            <th>Açıklama</th>
+            <th style="background-color:gray">Id</th>
+            <th style="background-color:gray">Marka</th>
+            <th style="background-color:gray">Renk</th>
+            <th style="background-color:gray">Model Yılı</th>
+            <th style="background-color:gray">Günlük Fiyatı</th>
+            <th style="background-color:gray">Açıklama</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let car of cars">
-            <td>{{ car.carId }}</td>
-            <td>{{ car.brandName }}</td>
-            <td>{{ car.colorName }}</td>
-            <td>{{ car.modelYear  }}</td>
-            <td>{{ car.dailyPrice }}</td>
-            <td>{{ car.description }}</td>
+            <td style="background-color:black">{{ car.carId }}</td>
+            <td style="background-color:black">{{ car.brandName }}</td>
+            <td style="background-color:black">{{ car.colorName }}</td>
+            <td style="background-color:black">{{ car.modelYear  }}</td>
+            <td style="background-color:black">{{ car.dailyPrice }}</td>
+            <td style="background-color:black">{{ car.description }}</td>
         </tr>
     </tbody> 
 </table>
