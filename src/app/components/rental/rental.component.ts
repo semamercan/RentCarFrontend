@@ -24,4 +24,5 @@ export class RentalComponent implements OnInit {
       this.dataLoaded=true; //senkron haline getirmek için kullanıyoruz.
     });
 }
+
 }
