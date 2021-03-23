@@ -2,27 +2,27 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 
-<table *ngIf="dataLoaded==true" class="table-dark">
-    <thead>
-        <tr >
-            <th style="background-color:gray">Id</th>
-            <th style="background-color:gray">Müşteri</th>
-            <th style="background-color:gray">Marka</th>
-            <th style="background-color:gray">Renk</th>
-            <th style="background-color:gray">Günlük Fiyatı</th>
-            <th style="background-color:gray">Kiralama Tarihi</th>
-            <th style="background-color:gray">İade Tarihi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let rental of rentals">
-            <td style="background-color:black">{{ rental.Id }}</td>
-            <td style="background-color:black">{{ rental.companyName }}</td>
-            <td style="background-color:black">{{ rental.brandName }}</td>
-            <td style="background-color:black">{{ rental.colorName }}</td>
-            <td style="background-color:black">{{ rental.dailyPrice }}</td>
-            <td style="background-color:black">{{ rental.rentDate }}</td>
-            <td style="background-color:black">{{ rental.returnDate }}</td>
-        </tr>
-    </tbody> 
-</table>
+  <div class="list-group border-success mb-3">
+    <table *ngIf="dataLoaded==true" class="table table-hover">
+        <thead>
+            <tr >
+                <th >Müşteri Adı Soyadı</th>
+                <th >Marka</th>
+                <th >Renk</th>
+                <th >Günlük Fiyatı</th>
+                <th >Kiralama Tarihi</th>
+                <th >İade Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rental of rentals">
+                <td >{{ rental.userName }}</td>
+                <td >{{ rental.carName }}</td>
+                <td >{{ rental.colorName }}</td>
+                <td >{{ rental.dailyPrice }}</td>
+                <td >{{ rental.rentDate }}</td>
+                <td >{{ rental.returnDate }}</td>
+            </tr>
+        </tbody> 
+    </table>
+  </div>

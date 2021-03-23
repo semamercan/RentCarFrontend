@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { CarComponent } from './components/car/car.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { ColorComponent } from './components/color/color.component';
-import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CarDetailsComponent } from './components/car/car-details/car-details.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CarComponent,
     BrandComponent,
     ColorComponent,
-    CustomerComponent,
     RentalComponent,
     NaviComponent,
-    SidebarComponent
+    SidebarComponent,
+    CarDetailsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -2,17 +2,13 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<table *ngIf="dataLoaded==true" class="table-dark">
-  <thead>
-      <tr >
-          <th style="background-color:gray">Id</th>
-          <th style="background-color:gray">Marka</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let brand of brands">
-          <td style="background-color:black">{{ brand.brandId }}</td>
-          <td style="background-color:black">{{ brand.brandName }}</td>
-      </tr>
-  </tbody> 
-</table>
+<div class="list-group border-success mb-3">
+  <ul  class="list-group">
+    <li class="list-group-item " routerLink="/cars"><h6> Tüm Markalar</h6></li>
+    <li (click)="setCurrentBrand(brand)"
+    routerLink="cars/brands/{{brand.brandId}}"
+     [class]="getCurrentBrandClass(brand)" 
+      *ngFor="let brand of brands">{{brand.brandName}}</li>
+  
+  </ul>
+</div>

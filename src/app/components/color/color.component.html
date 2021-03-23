@@ -2,17 +2,14 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   
-  <table *ngIf="dataLoaded==true" class="table-dark">
-    <thead>
-        <tr >
-            <th style="background-color:gray">Id</th>
-            <th style="background-color:gray">Renk</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let color of colors">
-            <td style="background-color:black">{{ color.colorId }}</td>
-            <td style="background-color:black">{{ color.colorName }}</td>
-        </tr>
-    </tbody> 
-  </table>
+  <div class="list-group border-success mb-3">
+    <ul  class="list-group">
+        <li class="list-group-item" routerLink="cars"><h6> Tüm Renkler</h6></li>
+        <li (click)="setCurrentColor(color)"
+        routerLink="cars/colors/{{color.colorId}}"
+         [class]="getCurrentColorClass(color)"
+         *ngFor="let color of colors"> {{color.colorName}}</li> 
+     
+      </ul>
+  </div>
+  

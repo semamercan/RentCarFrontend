@@ -1,0 +1,23 @@
+
+<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status"> 
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  
+  <div class="list-group border-success mb-3">
+    <table *ngIf="dataLoaded==true" class="table table-hover mb-3">
+        <thead>
+            <tr >
+                <th>Id</th>
+                <th>Adı Soyadı</th>
+                <th>E-mail Adresi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody> 
+      </table>
+  </div>

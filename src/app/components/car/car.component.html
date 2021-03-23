@@ -2,25 +2,23 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 
-<table *ngIf="dataLoaded==true" class="table-dark">
-    <thead>
-        <tr >
-            <th style="background-color:gray">Id</th>
-            <th style="background-color:gray">Marka</th>
-            <th style="background-color:gray">Renk</th>
-            <th style="background-color:gray">Model Yılı</th>
-            <th style="background-color:gray">Günlük Fiyatı</th>
-            <th style="background-color:gray">Açıklama</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let car of cars">
-            <td style="background-color:black">{{ car.carId }}</td>
-            <td style="background-color:black">{{ car.brandName }}</td>
-            <td style="background-color:black">{{ car.colorName }}</td>
-            <td style="background-color:black">{{ car.modelYear  }}</td>
-            <td style="background-color:black">{{ car.dailyPrice }}</td>
-            <td style="background-color:black">{{ car.description }}</td>
-        </tr>
-    </tbody> 
-</table>
+  <div class="list-group border-success mb-3">
+    <table *ngIf="dataLoaded==true" class="table-dark col-md-6">
+        <thead>
+            <tr >
+                <th scope="col" style="background-color:black">Id</th>
+                <th scope="col" style="background-color:black">Model Yılı</th>
+                <th scope="col" style="background-color:black">Günlük Fiyatı</th>
+                <th scope="col" style="background-color:black">Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let car of cars">
+                <td scope="row" style="background-color:gray">{{ car.carId }}</td>
+                <td scope="row" style="background-color:gray">{{ car.modelYear  }}</td>
+                <td scope="row" style="background-color:gray">{{ car.dailyPrice }}</td>
+                <td scope="row" style="background-color:gray">{{ car.description }}</td>
+            </tr>
+        </tbody> 
+    </table>
+  </div>
