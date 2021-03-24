@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetails } from 'src/app/models/carDetails';
@@ -6,6 +7,7 @@ import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/carImage.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { Rental } from 'src/app/models/rental';
+import { Car } from 'src/app/models/car';
 
 @Component({
   selector: 'app-car-details',
@@ -14,33 +16,35 @@ import { Rental } from 'src/app/models/rental';
 })
 export class CarDetailsComponent implements OnInit {
 
-  cars:CarDetails[]=[];
-  images:CarImage[]=[];
-  dataLoaded=false;
-  rentalsByCarId:Rental[];
-  rentals:Rental[];
-  carImageBasePath = "https://localhost:44383/carImages/";
-  carDetails:CarDetails[]=[];
+  cars: CarDetails[] = [];
+  currentCar: Car;
+  carImages: CarImage[] = [];
+  default: Car; 
+  dataLoaded = false;
+  currentImage:CarImage;
+  carDetails : Car[] = [];
+  carDetailss:Car;
 
-  constructor(private carService:CarService,
-    private activatedRoute:ActivatedRoute,
-    private CarImageService:CarImageService,
-    private rentalService:RentalService) { }
+  constructor(
+    private carService: CarService,
+    private activatedRoute: ActivatedRoute,
+    private carImageService: CarImageService
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['brandId']) {
-        this.getCarsByColor(params['colorId']);
-      } else if (params['colorId']) {
-        this.getCarsByBrand(params['brandId']);
-      } else if (params['carId']){
-        this.getCarImagesByCarId(params['carId']);
+    this.activatedRoute.params.subscribe((param) => {
+      if (param['brandId']) {
+        this.getCarsByColor(param['colorId']);
+      } else if (param['colorId']) {
+        this.getCarsByBrand(param['brandId']);
+      } else if (param['carId']){
+        this.getCarImagesByCarId(param['carId']);
       }else {
-        this.getCarDetails(params['carId']);
+        this.getCarDetails(param['carId']);
+        this.getCarDetailByCarId(param['carId']);
       }
     });
   }
-
   getCarsByBrand(brandId: number) {
     this.carService.getCarsByBrand(brandId).subscribe((response) => {
       this.cars = response.data;
@@ -63,30 +67,38 @@ export class CarDetailsComponent implements OnInit {
   }
 
   getCarImagesByCarId(carId:number){
-    this.CarImageService.getCarImageByCar(carId).subscribe(response=>{
-     this.images=response.data;
+    this.carImageService.getCarImageByCar(carId).subscribe(response=>{
+     this.carImages=response.data;
      console.log(response);
     })  
   }
 
-  check(id:number){
-    this.rentals.find(function(element){
-      if(element.Id===id && element.returnDate===null){
-        return false //araç teslim edilmediği için kiralanamaz.
-      }
-      else{
-        return true //araç kiralanabilir.
-      }
-    })
-   }
+  getCarDetailByCarId(carId:number)
+  {
+    this.carService.getCarDetailByCarId(carId).subscribe(response => {
+      this.carDetailss = response.data[0];
+      console.log(response.data);
+      this.dataLoaded=true;
+    });
+  }
 
-   sliderItemActive(index: number){
-    if(index === 0){
-      return "carousel-item active";
-    }
-    else{
-      return "carousel-item";
-    }
-  } 
+  setCurrentAllCar() {
+    this.currentCar = this.default;
+  }
 
+  getCurrentAllCarClass() {
+    if (this.currentCar == this.default) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item';
+    }
+  }  
+  getSliderClassName(carImage:CarImage){
+    if(this.currentImage ==carImage){
+      return "carousel-item active"
+    }else{
+      return "carousel-item"
+    }
+
+  }
 }
